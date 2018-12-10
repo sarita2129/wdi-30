@@ -1,0 +1,58 @@
+/*
+CSS Rule format:
+
+selector {
+  property: value;
+  other-property: other-value;
+}
+
+*/
+
+body {
+  background-color: limegreen;
+  /* Reset the browser defaults for the border and margin */
+  padding: 10px;
+  margin: 0;
+}
+
+h1 {
+  padding: 35px;
+  text-align: center;
+}
+
+/* Multiple selector */
+h1, h2, h3, h4, h5, h6 {
+  background-color: white;
+  color: limegreen;
+  text-shadow: 0 0 30px green;
+}
+
+
+a {
+  color: #ffdc02;
+}
+
+img {
+  display: block;
+  border: 5px solid black;
+  border-radius: 100%;
+  box-shadow: 0 15px 30px black;
+}
+
+p {
+  font-style: italic;
+}
+
+/* Matches <p class="fancy"> */
+p.fancy {
+  color: pink;
+  font-style: normal;
+  font-size: 200%;
+}
+
+.box {
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+}
