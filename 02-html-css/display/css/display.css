@@ -21,14 +21,17 @@ body {
 }
 
 .inline-block {
+  /* Side-by-side but with width and height */
   display: inline-block;
 }
 
 .none {
+  /* Occupies no space on the page */
   display: none;
 }
 
 .hidden {
+  /* Reserves space for the element but it is invisible */
   visibility: hidden;
 }
 
@@ -39,12 +42,14 @@ body {
 }
 
 /* Pseudoselector */
+/* Change colour when someone hovers over this div */
 .spooky:hover {
   background-color: black;
 }
 
+/* Change the span color when the parent is hovered */
 .spooky:hover span {
-  transition: 2s all;
+  transition: 2s all; /* CSS animations! */
   color: yellow;
   visibility: visible;
 }
