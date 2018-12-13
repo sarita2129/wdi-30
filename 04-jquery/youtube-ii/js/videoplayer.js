@@ -2,7 +2,7 @@ const $links = $('ul a');
 
 for (let i = 0; i < $links.length; i++) {
 
-  // Convert a single vanilla DOM back into a jQuery-powered object.
+  // Convert a single vanilla DOM node back into a jQuery-powered object.
   const $link = $( $links[i] );
 
   const href = $link.attr('href'); // Getter
