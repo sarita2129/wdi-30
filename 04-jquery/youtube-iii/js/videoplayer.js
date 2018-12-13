@@ -1,18 +1,26 @@
-const $links = $('ul a');
-
-for (let i = 0; i < $links.length; i++) {
-
-  // Convert a single vanilla DOM back into a jQuery-powered object.
-  const $link = $( $links[i] );
-
+const thumbnailify = function ($link) {
   const href = $link.attr('href'); // Getter
   const thumbnailURL = youtube.generateThumbnailUrl(href);
 
   const $thumbnail = $('<img>').attr('src', thumbnailURL); // Setter
-  $link.prepend($thumbnail);
 
-  // Alternatively:
-  // $('<img>').attr('src', thumbnailURL).prependTo($link);
+  $link.on('click', function (event) {
+    event.preventDefault(); // Disables navigating to a new page.
+
+    const embedURL = youtube.generateEmbedUrl(href);
+    const embedCode = `<iframe width="560" height="315" src="${ embedURL }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+    $('#player').hide().html( embedCode ).fadeIn(3000);
+  });
+
+  $link.prepend($thumbnail);
+};
+
+const $links = $('ul a');
+
+for (let i = 0; i < $links.length; i++) {
+  const $a = $( $links[i] );
+  thumbnailify( $a );
 }
 
 // "Pure" jQuery version:
