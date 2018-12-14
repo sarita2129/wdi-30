@@ -16,16 +16,21 @@ const thumbnailify = function ($link) {
   $link.prepend($thumbnail);
 };
 
-const $links = $('ul a');
+$(document).ready(function () {
+  $('h2').funText(500, 'rainbow');
+  $('a').funText(50, 'reverseCandy');
 
-for (let i = 0; i < $links.length; i++) {
-  const $a = $( $links[i] );
-  thumbnailify( $a );
-}
+  const $links = $('ul a');
 
-// "Pure" jQuery version:
-// $('ul a').each(function (index, element) {
-//   const href = $(element).attr('href');
-//   const thumbnailURL = youtube.generateThumbnailUrl(href);
-//   $('<img>').attr('src', thumbnailURL).prependTo(element);
-// });
+  for (let i = 0; i < $links.length; i++) {
+    const $a = $( $links[i] );
+    thumbnailify( $a );
+  }
+
+  // "Pure" jQuery version:
+  // $('ul a').each(function (index, element) {
+  //   const href = $(element).attr('href');
+  //   const thumbnailURL = youtube.generateThumbnailUrl(href);
+  //   $('<img>').attr('src', thumbnailURL).prependTo(element);
+  // });
+});
