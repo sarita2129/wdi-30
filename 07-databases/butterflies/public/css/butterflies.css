@@ -6,3 +6,15 @@ body {
   max-width: 960px;
   margin: auto;
 }
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  color: white;
+}
+
+.feature {
+  max-width: 100%;
+}
