@@ -19,14 +19,14 @@ end
 
 # CREATE - Add a new butterfly to the collection of butterflies
 post '/butterflies' do
-  query = "INSERT INTO butterflies (name, family, image) VALUES ('#{params["name"]}', '#{params["family"]}', '#{params["image"]}')"
+  query = "INSERT INTO butterflies (name, family, image) VALUES ('#{params[:name]}', '#{params[:family]}', '#{params[:image]}')"
   query_db query
   redirect to('/butterflies') # Redirect will make a GET request
 end
 
 # SHOW - Show a single butterfly, based on its ID
 get '/butterflies/:id' do
-  @butterfly = query_db "SELECT * FROM butterflies WHERE id=#{params[:id]}"
+  @butterfly = query_db "SELECT * FROM butterflies WHERE id=#{ params[:id] }"
   @butterfly = @butterfly.first # Pluck the single butterfly from the results array.
   erb :butterflies_show
 end
@@ -41,7 +41,7 @@ end
 post '/butterflies/:id' do
   query = "UPDATE butterflies SET name='#{params[:name]}', family='#{params[:family]}', image='#{params[:image]}' WHERE id=#{ params[:id] }"
   query_db query
-  redirect to("/butterflies/#{params[:id]}")
+  redirect to("/butterflies/#{ params[:id] }")
 end
 
 # DELETE - Delete a particular butterfly from the DB, based on its ID
