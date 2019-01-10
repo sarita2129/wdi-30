@@ -38,3 +38,10 @@ get '/butterflies/:id' do
   db.close
   erb :butterflies_show
 end
+
+get '/butterflies/:id/delete' do
+  db = SQLite3::Database.new 'database.sqlite3'
+  db.execute "DELETE FROM butterflies WHERE id=#{ params["id"] }"
+  db.close
+  redirect to("/butterflies")
+end
