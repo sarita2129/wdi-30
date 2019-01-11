@@ -13,10 +13,13 @@ ActiveRecord::Base.establish_connection(
 # Optional bonus
 ActiveRecord::Base.logger = Logger.new(STDERR)
 
+# MODELS
 class Butterfly < ActiveRecord::Base
+  belongs_to :plant, :optional => true # required since Rails 5
 end
 
 class Plant < ActiveRecord::Base
+  has_many :butterflies
 end
 
 get '/' do
@@ -40,6 +43,7 @@ post '/butterflies' do
   butterfly.name = params[:name]
   butterfly.family = params[:family]
   butterfly.image = params[:image]
+  butterfly.plant_id = params[:plant_id]
   butterfly.save
 
   redirect to("/butterflies/#{ butterfly.id }") # Redirect will make a GET request
@@ -63,6 +67,7 @@ post '/butterflies/:id' do
   butterfly.name = params[:name]
   butterfly.family = params[:family]
   butterfly.image = params[:image]
+  butterfly.plant_id = params[:plant_id]
   butterfly.save
   redirect to("/butterflies/#{ butterfly.id }")
 end
