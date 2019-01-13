@@ -1,9 +1,19 @@
 require 'pry'
 
-class MarxBrother
+class Actor
+  def award_speech
+    "I would like to thank my parents and my agent. We did it baby"
+  end
+
+  def deny_allegations
+    "I deny that and I was drunk and I don't remember"
+  end
+end
+
+class MarxBrother < Actor
   attr_accessor :name, :instrument, :vice # Macro - writes the getter and setter for you.
 
-  def initialize(n='', i='voice', v='')
+  def initialize(n='', i='voice', v='') # Variadic via default parameters
     @name = n
     @instrument = i
     @vice = v
@@ -11,6 +21,12 @@ class MarxBrother
 
   def perform
     "My name is #{ @name } and I play the #{ @instrument }"
+  end
+end
+
+class Stooge < Actor
+  def terrible?
+    true
   end
 end
 
