@@ -1,0 +1,13 @@
+body {
+  background-color: olive;
+  color: white;
+}
+
+a {
+  color: pink;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
