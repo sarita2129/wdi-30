@@ -6,4 +6,19 @@ class PlanetsController < ApplicationController
   def show
     @planet = Planet.find params[:id]
   end
+
+  def new
+  end
+
+  def create
+    planet = Planet.new
+    planet.name = params[:name]
+    planet.image = params[:image]
+    planet.orbit = params[:orbit]
+    planet.diameter = params[:diameter]
+    planet.mass = params[:mass]
+    planet.moons = params[:moons]
+    planet.save # INSERT, will set a new ID
+    redirect_to planet_path(planet.id)
+  end
 end
