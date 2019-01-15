@@ -37,4 +37,10 @@ class PlanetsController < ApplicationController
     planet.save # UPDATE
     redirect_to planet_path(planet.id)
   end
+
+  def destroy
+    planet = Planet.find params[:id]
+    planet.destroy # Galactus
+    redirect_to planets_path
+  end
 end
