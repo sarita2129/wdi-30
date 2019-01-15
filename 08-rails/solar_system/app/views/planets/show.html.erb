@@ -9,3 +9,7 @@
   <li>Mass: <%=  @planet.mass %></li>
   <li>Moons: <%= @planet.moons %></li>
 </ul>
+
+<div class="controls">
+  <%= link_to 'Edit planet', planet_edit_path(@planet.id) %>
+</div>
