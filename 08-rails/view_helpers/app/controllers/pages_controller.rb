@@ -15,4 +15,10 @@ class PagesController < ApplicationController
     @enemy_count = 2
     @story = "A very very very very very very very long time ago in a galaxy far far far far far away" * 80
   end
+
+  def assets
+  end
+
+  def url
+  end
 end
