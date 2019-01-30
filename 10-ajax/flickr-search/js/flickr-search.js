@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 const showImages = function (results) {
   // Nested AKA helper function returns a thumbnail URL for a given photo object.
   const generateURL = function (p) {
@@ -33,7 +35,8 @@ const searchFlickr = function (term) {
     method: 'flickr.photos.search',
     api_key: '2f5ac274ecfac5a455f38745704ad084', // not a secret key
     text: term,
-    format: 'json'
+    format: 'json',
+    page: currentPage++
   }).done(showImages);
 
 };
