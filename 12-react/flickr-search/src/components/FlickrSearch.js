@@ -48,7 +48,7 @@ class FlickrSearch extends Component {
     return (
       <div>
       {/*
-        The parent FlickrSearch can't interact with the child (Gallery)'s state directly.
+        The parent FlickrSearch can't interact with the child (SearchForm)'s state directly.
         But it CAN pass in a callback for the child to call/invoke/run at the appropriate time,
         and that callback can access the state of the child from the parent's scope.
       */}
