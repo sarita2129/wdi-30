@@ -101,7 +101,7 @@ class Gallery extends Component {
 // Functional component -- good when you don't need state
 function Image (props) {
   return (
-    <img src={ props.url } width="250" height="250" />
+    <img src={ props.url } width="150" height="150" />
   )
 }
 
