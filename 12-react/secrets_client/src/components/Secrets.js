@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000/secrets.json'; // Change this in production.
+// const SERVER_URL = 'http://95a3f46c.ngrok.io/secrets.json';
 
 class SecretForm extends Component {
   constructor() {
@@ -46,28 +47,24 @@ class Secrets extends Component {
   constructor() {
     super();
     this.state = {
-      // TODO: Get these secrets from AJAX
-      secrets: [
-        {id: 1, content: 'Test secret'},
-        {id: 2, content: 'Test secret about vegetable oil'},
-        {id: 3, content: 'Something about Michael Jackson'}
-      ]
+      secrets: []
     };
     this.saveSecret = this.saveSecret.bind(this);
+
+    const fetchSecrets = () => {
+      axios.get(SERVER_URL).then( (results) => {
+        this.setState({secrets: results.data});
+        setTimeout(fetchSecrets, 4000);
+      });
+    };
+
+    fetchSecrets();
   }
 
   saveSecret(content) {
-    // TODO: Make a POST request to the server
-    const secret = {
-      id: Math.random(),
-      content: content
-    };
-
-    // Spread operator ...
-    this.setState({ secrets: [...this.state.secrets, secret] });
-
     axios.post(SERVER_URL, {content}).then((results) => {
-      console.log('secrets updated on server');
+      // Spread operator ...
+      this.setState({ secrets: [results.data, ...this.state.secrets] });
     });
   }
 
