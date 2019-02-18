@@ -13,6 +13,7 @@ end
 #   # str.chars.inject { |memo, char| char + memo }
 #
 #   str.chars.inject do |memo, char|
+      # puts "memo: #{ memo }, char: #{ char }"
 #     char + memo # Reassemble these backwards.
 #   end
 # end
