@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
 
-import Task from './Task';
+import { Tasks } from '../api/tasks.js'; // Mongo Collection
 
-export default class App extends Component {
-  getTasks() {
-    return [
-      { _id: 1, text: 'This is the first task'},
-      { _id: 2, text: 'This is the second task'},
-      { _id: 3, text: 'This is the third task'},
-      { _id: 4, text: 'This is the last task'},
-    ]
-  }
+import Task from './Task'; // Component
 
+class App extends Component {
   renderTasks() {
-    return this.getTasks().map((task) => (
+    return this.props.tasks.map((task) => (
       <Task key={task._id} task={task} />
     ));
   }
@@ -31,3 +25,10 @@ export default class App extends Component {
     );
   }
 }
+
+// Magic here: you are not expected to understand this.
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}).fetch()
+  };
+})(App);
