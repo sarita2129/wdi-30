@@ -48,9 +48,7 @@ app.get(/[0-9]/, (req, res) => {
 });
 
 app.get('/trivia', (req, res) => {
-  // fetch some trivia from http://numbersapi.com/random/trivia
   axios.get('http://numbersapi.com/random/trivia').then((response) => {
-    // display that trivia with a view
     res.render('trivia.ejs', {trivia: response.data});
   });
 });
