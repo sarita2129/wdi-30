@@ -1,4 +1,7 @@
 class SinglyLinkedList
+
+  include Enumerable # Mixin: kind of like multiple inheritance
+
   class Node
     attr_accessor :value, :next
 
@@ -50,15 +53,27 @@ class SinglyLinkedList
   # TODO: tricky
   def reverse
     # return a new singly linked list with the nodes in reverse order
+    reversed_list = SinglyLinkedList.new
+    node = @head
+    while node
+      reversed_list.prepend(node.value)
+      node = node.next
+    end
+    reversed_list
   end
 
   # TODO: trickier
   def reverse!
-    # destructive reverse
+    @head = self.reverse.head
   end
 
   # TODO: tricky -- how do you accept/invoke a block
   def each
+    node = @head
+    while node
+      yield(node.value) if block_given? # Javascripters would say we're executing a callback here.
+      node = node.next
+    end
   end
 
   # Also: .map, .reduce, .select, .reject etc
@@ -68,6 +83,10 @@ end
 bros = SinglyLinkedList.new 'Groucho'
 bros.append 'Harpo'
 bros.append 'Chico'
+
+# bros.each do |b|
+#   puts b
+# end
 
 require 'pry'
 binding.pry
