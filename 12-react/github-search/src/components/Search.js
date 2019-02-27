@@ -26,7 +26,7 @@ export default class Search extends Component {
         <h2>Search Github by username</h2>
         <form onSubmit={ this._handleSubmit }>
           <input type="search" onChange={ this._handleChange } value={ this.state.username } />
-          <button>Search for user</button>
+          <button>Search for { this.state.username }</button>
         </form>
       </div>
     );
