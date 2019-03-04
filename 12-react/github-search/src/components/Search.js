@@ -1,34 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export default class Search extends Component {
-  constructor() {
-    super();
-    this.state = { username: 'coldhead' };
-    this._handleChange = this._handleChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
+export default (props) => {
+  const [username, setUsername] = useState('coldhead');
 
-  _handleChange(e) {
-    this.setState({
-      username: e.target.value
-    });
-  }
+  const _handleChange = (e) => setUsername(e.target.value);
 
-  _handleSubmit(e) {
+  const _handleSubmit = (e) => {
     e.preventDefault();
-    const username = this.state.username;
-    this.props.history.push(`/details/${ username }`);
-  }
+    props.history.push(`/details/${ username }`);
+  };
 
-  render() {
-    return (
-      <div className="search">
-        <h2>Search Github by username</h2>
-        <form onSubmit={ this._handleSubmit }>
-          <input type="search" onChange={ this._handleChange } value={ this.state.username } />
-          <button>Search for { this.state.username }</button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="search">
+      <h2>Search Github by username</h2>
+      <form onSubmit={ _handleSubmit }>
+        <input type="search" onChange={_handleChange } value={ username } />
+        <button>Search for { username }</button>
+      </form>
+    </div>
+  );
 }
