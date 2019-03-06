@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Github from '../utils';
 
+const RUN_ONCE = [];
+
 export default (props) => {
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState(null);
-  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    if (dataLoaded) {
-      return;
-    }
-
     const username = props.match.params.username;
 
     Github.getUserInfo(username).then((result) => {
@@ -20,9 +17,7 @@ export default (props) => {
     Github.getUserRepos(username).then((result) => {
       setRepos(result.data);
     })
-
-    setDataLoaded(true);
-  });
+  }, RUN_ONCE); // The empty array causes the useEffect callback to only run once. Magic.
 
   return (
     <div className="profile">
