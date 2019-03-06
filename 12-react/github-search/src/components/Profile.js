@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Github from '../utils';
 
-export default class Profile extends Component {
-  constructor() {
-    super();
-    this.state = { user: null, repos: null };
-  }
+export default (props) => {
+  const [user, setUser] = useState(null);
+  const [repos, setRepos] = useState(null);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-  componentDidMount() {
-    const username = this.props.match.params.username;
+  useEffect(() => {
+    if (dataLoaded) {
+      return;
+    }
+
+    const username = props.match.params.username;
+
     Github.getUserInfo(username).then((result) => {
-      this.setState({
-        user: result.data
-      })
+      setUser(result.data);
     });
 
     Github.getUserRepos(username).then((result) => {
-      this.setState({
-        repos: result.data
-      })
-    });
-  }
+      setRepos(result.data);
+    })
 
-  render() {
-    return (
-      <div className="profile">
-        <h2>Github User Details</h2>
-        <UserInfo user={ this.state.user } />
-        <Repositories repos={ this.state.repos } />
-      </div>
-    );
-  }
-}
+    setDataLoaded(true);
+  });
+
+  return (
+    <div className="profile">
+      <h2>Github User Details</h2>
+      <UserInfo user={ user } />
+      <Repositories repos={ repos } />
+    </div>
+  )
+};
 
 const UserInfo = (props) => {
   if (props.user === null) {
